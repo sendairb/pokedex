@@ -1,0 +1,14 @@
+<h1>Pokedexes#main</h1>
+  <table class="table">
+    <% @pokemons.each do |pokemon|%>
+      <tr>
+        <td><%= pokemon[:regional_pokedex_no] %></td>
+        <td><%= pokemon[:name] %></td>
+        <td>
+          <% pokemon[:type].each do |type| %>
+            <%= type %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
