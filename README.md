@@ -1,24 +1,18 @@
-# README
+# Sendai.rb ポケモン図鑑を作ろうプロジェクト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+こちらは仙台のRubyコミュニティである[Sendai.rb](https://sendairb.connpass.com/)のイベント中に実装したソースコードを管理するためのリポジトリです。
 
-Things you may want to cover:
+このアプリケーションの実装を進めている[イベント](https://sendairb.connpass.com/event/)は毎月第二金曜の夜を基本の開催日として定期的に開催しています。
+ご興味のある方はぜひご参加ください😊
 
-* Ruby version
+## セットアップ手順
+基本的なRails環境に加えて、npmがインストールされていることを前提とします。
 
-* System dependencies
+```console
+cd <REPOSITORY_ROOT>
 
-* Configuration
+bundle install
+npm install --save-dev
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rails server
+```
