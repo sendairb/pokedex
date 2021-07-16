@@ -1,0 +1,2 @@
+class RegionalPokedex < ApplicationRecord
+end

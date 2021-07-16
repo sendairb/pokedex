@@ -1,0 +1,9 @@
+<h1>Pokemons#index</h1>
+<table>
+  <% @pokemons.each do |pokemon|%>
+  <tr>
+    <td><%= pokemon.name %></td>
+    <td><%= pokemon.type1 %> <%= pokemon.type2 %></td>
+  </tr>
+  <% end %>
+</table>
