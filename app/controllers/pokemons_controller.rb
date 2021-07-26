@@ -1,5 +1,5 @@
 class PokemonsController < ApplicationController
   def index
-    @pokemons = Pokemon.all
+    @regional_pokedex = RegionalPokedex.find_by!(name: params[:regional_pokedex_name])
   end
 end

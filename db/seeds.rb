@@ -11,6 +11,7 @@ RegionalPokedex.delete_all
 
 pokemons = [
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
      "regional_pokedex_no": 1,
      "name": "サルノリ",
@@ -19,6 +20,7 @@ pokemons = [
      "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 811,
     "regional_pokedex_no": 2,
     "name": "バチンキー",
@@ -27,6 +29,7 @@ pokemons = [
      "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 812,
     "regional_pokedex_no": 3,
     "name": "ゴリランダー",
@@ -35,6 +38,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 813,
     "regional_pokedex_no": 4,
     "name": "ヒバニー",
@@ -43,6 +47,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 814,
     "regional_pokedex_no": 5,
     "name": "ラビフット",
@@ -51,6 +56,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 815,
     "regional_pokedex_no": 6,
     "name": "エースバーン",
@@ -59,6 +65,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 816,
     "regional_pokedex_no": 7,
     "name": "メッソン",
@@ -67,6 +74,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 817,
     "regional_pokedex_no": 8,
     "name": "ジメレオン",
@@ -75,6 +83,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 818,
     "regional_pokedex_no": 9,
     "name": "インテレオン",
@@ -83,6 +92,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
     "regional_pokedex_no": 10,
     "name": "サッチムシ",
@@ -91,6 +101,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
     "regional_pokedex_no": 11,
     "name": "レドームシ",
@@ -99,6 +110,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
     "regional_pokedex_no": 12,
     "name": "イオルブ",
@@ -107,6 +119,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
     "regional_pokedex_no": 13,
     "name": "キャタピー",
@@ -115,6 +128,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
     "regional_pokedex_no": 14,
     "name": "トランセル",
@@ -123,6 +137,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
     "regional_pokedex_no": 15,
     "name": "バタフリー",
@@ -131,6 +146,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
     "regional_pokedex_no": 16,
     "name": "アゴジムシ",
@@ -139,6 +155,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
     "regional_pokedex_no": 17,
     "name": "デンヂムシ",
@@ -147,6 +164,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
     "regional_pokedex_no": 18,
     "name": "クワガノン",
@@ -155,6 +173,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
     "regional_pokedex_no": 19,
     "name": "ホーホー",
@@ -163,6 +182,7 @@ pokemons = [
     "appear_on_shield": true
   },
   {
+    "regional_pokedex_id": 1,
     "national_pokedex_no": 810,
     "regional_pokedex_no": 20,
     "name": "ヨルノズク",
@@ -175,6 +195,7 @@ pokemons = [
 pokemons.each do |pokemon|
   type1, type2 = pokemon[:type]
   Pokemon.create(
+    regional_pokedex_id: pokemon[:regional_pokedex_id],
     name: pokemon[:name],
     type1: type1,
     type2: type2,
@@ -186,6 +207,7 @@ pokemons.each do |pokemon|
 end
 
 RegionalPokedex.create(
+  id: 1,
   name: 'galar',
   display_name: 'ガラル'
 )

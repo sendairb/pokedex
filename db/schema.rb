@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_120311) do
+ActiveRecord::Schema.define(version: 2021_07_26_161055) do
 
   create_table "pokemons", force: :cascade do |t|
     t.string "name", null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_07_16_120311) do
     t.boolean "appear_on_shield", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "regional_pokedex_id", null: false
   end
 
   create_table "regional_pokedexes", force: :cascade do |t|
