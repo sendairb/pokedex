@@ -1,9 +1,16 @@
-<h1>Pokemons#index</h1>
-<table>
-  <% @regional_pokedex.pokemons.each do |pokemon|%>
+<h1><%= @regional_pokedex.display_name %>図鑑 ポケモン一覧</h1>
+
+<table class="table">
   <tr>
-    <td><%= pokemon.name %></td>
-    <td><%= pokemon.type1 %> <%= pokemon.type2 %></td>
+    <th style="width: 5em;">図鑑No.</th>
+    <th style="width: 15em;">名前</th>
+    <th style="width: 20em;">タイプ</th>
   </tr>
+  <% @regional_pokedex.pokemons.each do |pokemon|%>
+    <tr>
+      <td><%= pokemon.regional_pokedex_no %></td>
+      <td><%= pokemon.name %></td>
+      <td><%= pokemon.type1 %> <%= pokemon.type2 %></td>
+    </tr>
   <% end %>
 </table>
