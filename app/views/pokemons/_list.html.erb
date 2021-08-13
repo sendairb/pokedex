@@ -29,10 +29,21 @@
         </div>
         <div class="col-sm-10">
           <% @pokemon_title_masters.each do |pokemon_title|%>
-            <label class="form-check-label" for="pokemon-title-<%= pokemon_title[:key] %>">
-              <input class="form-check-input" type="checkbox" name="pokemon_titles[]" value="<%= pokemon_title[:key] %>" id="pokemon-title-<%= pokemon_title[:key] %>"<%= @pokemon_titles&.include?(pokemon_title[:key]) ? " checked" : "" %>>
-              <%= pokemon_title[:name] %>
-            </label>
+            <div class="form-group">
+              <strong><%= pokemon_title[:name] %></strong>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-nc" value="0"<%= @pokemon_titles.empty? || @pokemon_titles[pokemon_title[:key]] == "0" ? " checked" : "" %>>
+                <label class="form-check-label" for="pokemon-title-<%= pokemon_title[:key] %>-nc">考慮しない</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-appear" value="1"<%= @pokemon_titles[pokemon_title[:key]] == "1" ? " checked" : "" %>>
+                <label class="form-check-label" for="pokemon-title-<%= pokemon_title[:key] %>-appear">出現する</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-notappear" value="2"<%= @pokemon_titles[pokemon_title[:key]] == "2" ? " checked" : "" %>>
+                <label class="form-check-label" for="pokemon-title-<%= pokemon_title[:key] %>-notappear">出現しない</label>
+              </div>
+            </div>
           <% end %>
         </div>
       </div>
