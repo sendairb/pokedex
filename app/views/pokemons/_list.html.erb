@@ -32,15 +32,15 @@
             <div class="form-group">
               <strong><%= pokemon_title[:name] %></strong>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-nc" value="0"<%= @pokemon_titles.empty? || @pokemon_titles[pokemon_title[:key]] == "0" ? " checked" : "" %>>
+                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-nc" value="<%= PokemonsController::NOT_CONCERN %>"<%= @pokemon_titles.empty? || @pokemon_titles[pokemon_title[:key]] == PokemonsController::NOT_CONCERN ? " checked" : "" %>>
                 <label class="form-check-label" for="pokemon-title-<%= pokemon_title[:key] %>-nc">考慮しない</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-appear" value="1"<%= @pokemon_titles[pokemon_title[:key]] == "1" ? " checked" : "" %>>
+                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-appear" value="<%= PokemonsController::APPEAR %>"<%= @pokemon_titles[pokemon_title[:key]] == PokemonsController::APPEAR ? " checked" : "" %>>
                 <label class="form-check-label" for="pokemon-title-<%= pokemon_title[:key] %>-appear">出現する</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-notappear" value="2"<%= @pokemon_titles[pokemon_title[:key]] == "2" ? " checked" : "" %>>
+                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-notappear" value="<%= PokemonsController::NOT_APPEAR %>"<%= @pokemon_titles[pokemon_title[:key]] == PokemonsController::NOT_APPEAR ? " checked" : "" %>>
                 <label class="form-check-label" for="pokemon-title-<%= pokemon_title[:key] %>-notappear">出現しない</label>
               </div>
             </div>

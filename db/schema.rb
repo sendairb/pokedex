@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(version: 2021_07_26_161055) do
     t.boolean "appear_on_shield", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "regional_pokedex_id", null: false
+    t.integer "regional_pokedex_id"
+    t.index ["regional_pokedex_id"], name: "index_pokemons_on_regional_pokedex_id"
   end
 
   create_table "regional_pokedexes", force: :cascade do |t|
@@ -32,4 +33,5 @@ ActiveRecord::Schema.define(version: 2021_07_26_161055) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "pokemons", "regional_pokedexes"
 end
