@@ -1,8 +1,4 @@
 class PokemonsController < ApplicationController
-  NOT_CONCERN = "not_concern"
-  APPEAR = "appear"
-  NOT_APPEAR = "not_appear"
-
   before_action :set_masters
 
   def set_masters
@@ -42,17 +38,17 @@ class PokemonsController < ApplicationController
     @pokemons = @pokemons.where("name like ?", "%#{@pokemon_name}%") if @pokemon_name&.present?
     @pokemons = @pokemons.where(type1: @pokemon_types).or(@pokemons.where(type2: @pokemon_types)) if @pokemon_types&.present?
     case @pokemon_titles["sword"]
-    when APPEAR
+    when "appear"
       @pokemons = @pokemons.where(appear_on_sword: true)
-    when NOT_APPEAR
+    when "not_appear"
       @pokemons = @pokemons.where(appear_on_sword: false)
     else
       # do not concern
     end
     case @pokemon_titles["shield"]
-    when APPEAR
+    when "appear"
       @pokemons = @pokemons.where(appear_on_shield: true)
-    when NOT_APPEAR
+    when "not_appear"
       @pokemons = @pokemons.where(appear_on_shield: false)
     else
       # do not concern
