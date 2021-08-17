@@ -14,5 +14,12 @@ cd <REPOSITORY_ROOT>
 bundle install
 npm install --save-dev
 
+## マイグレーション実行
+rails db:migrate
+
+## マスタデータ投入
+rails db:seed
+
+## サーバ起動
 rails server
 ```
