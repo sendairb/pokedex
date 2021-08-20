@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type1: MyString
+  type2: MyString
+  national_pokedex_no: 1
+  regional_pokedex_no: 1
+  appear_on_sword: false
+  appear_on_shield: false
+
+two:
+  name: MyString
+  type1: MyString
+  type2: MyString
+  national_pokedex_no: 1
+  regional_pokedex_no: 1
+  appear_on_sword: false
+  appear_on_shield: false

@@ -1,0 +1,11 @@
+<h1><%= @regional_pokedex.display_name %>図鑑 ポケモン一覧</h1>
+
+<%= render 'list',
+           regional_pokedex: @regional_pokedex,
+           pokemons: @pokemons,
+           pokemon_name: @pokemon_name,
+           pokemon_types: @pokemon_types,
+           pokemon_titles: @pokemon_titles,
+           pokemon_type_masters: @pokemon_type_masters,
+           pokemon_title_masters: @pokemon_title_masters
+%>

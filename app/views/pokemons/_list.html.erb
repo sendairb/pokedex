@@ -1,0 +1,68 @@
+<%= form_with(url: "/regional_pokedexes/galar/pokemons/search", method: "get") do |form| %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">検索</h5>
+      <div class="row">
+        <div class="col-sm-2">
+          <h6><%= label_tag(:pokemon_name, "種族名") %></h6>
+        </div>
+        <div class="col-sm-10">
+          <%= text_field_tag(:pokemon_name, @pokemon_name, class: "form-control", style: "width: 15em;") %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2">
+          <h6>タイプ</h6>
+        </div>
+        <div class="col-sm-10">
+          <% @pokemon_type_masters.each do |pokemon_type|%>
+            <label class="form-check-label" for="pokemon-type-<%= pokemon_type[:key] %>">
+              <input class="form-check-input" type="checkbox" name="pokemon_types[]" value="<%= pokemon_type[:name] %>" id="pokemon-type-<%= pokemon_type[:key] %>"<%= @pokemon_types&.include?(pokemon_type[:name]) ? " checked" : "" %>>
+              <%= pokemon_type[:name] %>
+            </label>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2">
+          <h6>入手できるタイトル</h6>
+        </div>
+        <div class="col-sm-10">
+          <% @pokemon_title_masters.each do |pokemon_title|%>
+            <div class="form-group">
+              <strong><%= pokemon_title[:name] %></strong>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-nc" value="not_concern"<%= @pokemon_titles.empty? || @pokemon_titles[pokemon_title[:key]] == "not_concern" ? " checked" : "" %>>
+                <label class="form-check-label" for="pokemon-title-<%= pokemon_title[:key] %>-nc">考慮しない</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-appear" value="appear"<%= @pokemon_titles[pokemon_title[:key]] == "appear" ? " checked" : "" %>>
+                <label class="form-check-label" for="pokemon-title-<%= pokemon_title[:key] %>-appear">出現する</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pokemon_titles[<%= pokemon_title[:key] %>]" id="pokemon-title-<%= pokemon_title[:key] %>-notappear" value="not_appear"<%= @pokemon_titles[pokemon_title[:key]] == "not_appear" ? " checked" : "" %>>
+                <label class="form-check-label" for="pokemon-title-<%= pokemon_title[:key] %>-notappear">出現しない</label>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <%= form.submit("検索", class: "btn btn-primary") %>
+    </div>
+  </div>
+<% end %>
+
+<table class="table">
+  <tr>
+    <th style="width: 5em;">図鑑No.</th>
+    <th style="width: 15em;">名前</th>
+    <th style="width: 20em;">タイプ</th>
+  </tr>
+  <% @pokemons.each do |pokemon|%>
+    <tr>
+      <td><%= pokemon.regional_pokedex_no %></td>
+      <td><%= pokemon.name %></td>
+      <td><%= pokemon.type1 %> <%= pokemon.type2 %></td>
+    </tr>
+  <% end %>
+</table>
