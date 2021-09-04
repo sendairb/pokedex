@@ -28,14 +28,23 @@ class PokemonsController < ApplicationController
   end
 
   def search
-    @pokemon_name = params[:pokemon_name]
+
     @pokemon_types = params[:pokemon_types]
     @pokemon_titles = params[:pokemon_titles]
 
     @regional_pokedex = RegionalPokedex.find_by!(name: params[:regional_pokedex_name])
 
     @pokemons = @regional_pokedex.pokemons
-    @pokemons = @pokemons.where("name like ?", "%#{@pokemon_name}%") if @pokemon_name&.present?
+
+
+    @pokemon_name = params[:pokemon_name]
+    # @pokemons = @pokemons.search_by_name(@pokemon_name)
+    pokemon_name_criteria = PokemonNameCriteria.new(@pokemon_name)
+    pokemons_list = PokemonList.new(@pokemons)
+    pokemons_list = pokemons_list.filter_by_name_criteria(pokemon_name_criteria)
+    @pokemons = pokemons_list.pokemons
+
+
     @pokemons = @pokemons.where(type1: @pokemon_types).or(@pokemons.where(type2: @pokemon_types)) if @pokemon_types&.present?
     case @pokemon_titles["sword"]
     when "appear"
