@@ -28,39 +28,16 @@ class PokemonsController < ApplicationController
   end
 
   def search
-
-    @pokemon_types = params[:pokemon_types]
     @pokemon_titles = params[:pokemon_titles]
-
     @regional_pokedex = RegionalPokedex.find_by!(name: params[:regional_pokedex_name])
 
-    @pokemons = @regional_pokedex.pokemons
-
-
     @pokemon_name = params[:pokemon_name]
-    # @pokemons = @pokemons.search_by_name(@pokemon_name)
     pokemon_name_criteria = PokemonNameCriteria.new(@pokemon_name)
-    pokemons_list = PokemonList.new(@pokemons)
-    pokemons_list = pokemons_list.filter_by_name_criteria(pokemon_name_criteria)
-    @pokemons = pokemons_list.pokemons
+    all_pokemons = PokemonSummaryRepository.list
+    @pokemons = all_pokemons.filter_by_name(pokemon_name_criteria)
 
-
-    @pokemons = @pokemons.where(type1: @pokemon_types).or(@pokemons.where(type2: @pokemon_types)) if @pokemon_types&.present?
-    case @pokemon_titles["sword"]
-    when "appear"
-      @pokemons = @pokemons.where(appear_on_sword: true)
-    when "not_appear"
-      @pokemons = @pokemons.where(appear_on_sword: false)
-    else
-      # do not concern
-    end
-    case @pokemon_titles["shield"]
-    when "appear"
-      @pokemons = @pokemons.where(appear_on_shield: true)
-    when "not_appear"
-      @pokemons = @pokemons.where(appear_on_shield: false)
-    else
-      # do not concern
-    end
+    @pokemon_types = params[:pokemon_types]
+    pokemon_types_criteria = PokemonTypesCriteria.new(@pokemon_types)
+    @pokemons = @pokemons.filter_by_types(pokemon_types_criteria)
   end
 end
