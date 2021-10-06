@@ -9,13 +9,8 @@ class PokemonSummaryList
     @summary_list = summary_list
   end
 
-  def filter_by_name(name_criteria)
-    filtered_list = @summary_list.select { |summary| name_criteria.accept(summary) }
-    PokemonSummaryList.new(filtered_list)
-  end
-
-  def filter_by_types(types_criteria)
-    filtered_list = @summary_list.select { |summary| types_criteria.accept(summary) }
+  def filter(pokemon_criteria)
+    filtered_list = @summary_list.select { |summary| pokemon_criteria.accept(summary) }
     PokemonSummaryList.new(filtered_list)
   end
 end
