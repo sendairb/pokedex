@@ -14,7 +14,8 @@ class PokemonsController < ApplicationController
       { key: "steel", name: "はがね"}, { key: "fairy", name: "フェアリー"},
     ]
     @pokemon_title_masters = [
-      { key: "sword", name: "ソード" }, { key: "shield", name: "シールド" },
+      { key: "sword", name: "ソード" },
+      { key: "shield", name: "シールド" },
     ]
   end
 
@@ -37,8 +38,11 @@ class PokemonsController < ApplicationController
     @pokemon_types = params[:pokemon_types]
     types_criteria = PokemonTypesCriteria.new(@pokemon_types)
 
-    criteria_list = [name_criteria, types_criteria]
+    @pokemon_titles = params[:pokemon_titles]
+    titles_criteria = PokemonTitlesCriteria.new(@pokemon_titles)
+
+    criteria_list = [name_criteria, types_criteria, titles_criteria]
     pokemon_criteria = PokemonCriteria.new(criteria_list)
-    @pokemons = PokemonSummaryRepository.list_2(pokemon_criteria) # 種族絞り込み条件
+    @pokemons = PokemonSummaryRepository.list(pokemon_criteria) # 種族絞り込み条件
   end
 end
