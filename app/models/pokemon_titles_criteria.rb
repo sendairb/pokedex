@@ -8,35 +8,27 @@ class PokemonTitlesCriteria
   end
 
   def accept(summary)
-    # titles => {
-    #   sword: __criteria__,
-    #   shield: __criteria__
-    # }
-
-    self.appear_on_sword?(summary) && self.appear_on_shield?(summary)
+    appear_on_sword?(summary) && appear_on_shield?(summary)
   end
 
   private
 
-  def appear_on_sword?(summary)
-    case @titles['sword']
+  def is_gotcha?(title, appear)
+    case title
     when NOT_CONCERN
       true
     when APPEAR
-      summary.appear_on_sword
+      appear
     when NOT_APPEAR
-      !summary.appear_on_sword
+      !appear
     end
   end
 
+  def appear_on_sword?(summary)
+    is_gotcha?(@titles['sword'], summary.appear_on_sword)
+  end
+
   def appear_on_shield?(summary)
-    case @titles['shield']
-    when NOT_CONCERN
-      true
-    when APPEAR
-      summary.appear_on_shield
-    when NOT_APPEAR
-      !summary.appear_on_shield
-    end
+    is_gotcha?(@titles['shield'], summary.appear_on_shield)
   end
 end
