@@ -39,6 +39,6 @@ class PokemonsController < ApplicationController
 
     criteria_list = [name_criteria, types_criteria]
     pokemon_criteria = PokemonCriteria.new(criteria_list)
-    @pokemons = PokemonSummaryRepository.list_2(pokemon_criteria) # 種族絞り込み条件
+    @pokemons = PokemonSummaryRepository.list(pokemon_criteria) # 種族絞り込み条件
   end
 end

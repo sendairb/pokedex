@@ -57,12 +57,17 @@
     <th style="width: 5em;">図鑑No.</th>
     <th style="width: 15em;">名前</th>
     <th style="width: 20em;">タイプ</th>
+    <th style="width: 20em;">ソード</th>
+    <th style="width: 20em;">シールド</th>
   </tr>
   <% @pokemons.each do |pokemon|%>
     <tr>
       <td><%= pokemon.regional_pokedex_no %></td>
       <td><%= pokemon.name %></td>
       <td><%= pokemon.type1 %> <%= pokemon.type2 %></td>
+      <td><%= pokemon.appear_on_sword %></td>
+      <td><%= pokemon.appear_on_shield %></td>
+      <td></td>
     </tr>
   <% end %>
 </table>
