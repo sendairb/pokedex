@@ -16,6 +16,11 @@ class PokemonsController < ApplicationController
     @pokemon_title_masters = [
       { key: "sword", name: "ソード" }, { key: "shield", name: "シールド" },
     ]
+    @pokemon_title_is_appear = [
+      { value: PokemonTitlesCriteria::NOT_CONCERN, label: '考慮しない' },
+      { value: PokemonTitlesCriteria::APPEAR, label: '出現する' },
+      { value: PokemonTitlesCriteria::NOT_APPEAR, label: '出現しない' },
+    ]
   end
 
   def index
