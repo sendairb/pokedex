@@ -28,7 +28,6 @@ class PokemonsController < ApplicationController
   end
 
   def search
-    @pokemon_titles = params[:pokemon_titles]
     @regional_pokedex = RegionalPokedex.find_by!(name: params[:regional_pokedex_name])
 
     @pokemon_name = params[:pokemon_name]
@@ -37,7 +36,10 @@ class PokemonsController < ApplicationController
     @pokemon_types = params[:pokemon_types]
     types_criteria = PokemonTypesCriteria.new(@pokemon_types)
 
-    criteria_list = [name_criteria, types_criteria]
+    @pokemon_titles = params[:pokemon_titles]
+    titles_criteria = PokemonTitlesCriteria.new(@pokemon_titles)
+
+    criteria_list = [name_criteria, types_criteria, titles_criteria]
     pokemon_criteria = PokemonCriteria.new(criteria_list)
     @pokemons = PokemonSummaryRepository.list(pokemon_criteria) # 種族絞り込み条件
   end
