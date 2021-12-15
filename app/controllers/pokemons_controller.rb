@@ -16,6 +16,11 @@ class PokemonsController < ApplicationController
     @pokemon_title_masters = [
       { key: "sword", name: "ソード" }, { key: "shield", name: "シールド" },
     ]
+    @pokemon_title_is_appear = [
+      { value: PokemonTitlesCriteria::NOT_CONCERN, label: '考慮しない' },
+      { value: PokemonTitlesCriteria::APPEAR, label: '出現する' },
+      { value: PokemonTitlesCriteria::NOT_APPEAR, label: '出現しない' },
+    ]
   end
 
   def index
@@ -28,30 +33,19 @@ class PokemonsController < ApplicationController
   end
 
   def search
-    @pokemon_name = params[:pokemon_name]
-    @pokemon_types = params[:pokemon_types]
-    @pokemon_titles = params[:pokemon_titles]
-
     @regional_pokedex = RegionalPokedex.find_by!(name: params[:regional_pokedex_name])
 
-    @pokemons = @regional_pokedex.pokemons
-    @pokemons = @pokemons.where("name like ?", "%#{@pokemon_name}%") if @pokemon_name&.present?
-    @pokemons = @pokemons.where(type1: @pokemon_types).or(@pokemons.where(type2: @pokemon_types)) if @pokemon_types&.present?
-    case @pokemon_titles["sword"]
-    when "appear"
-      @pokemons = @pokemons.where(appear_on_sword: true)
-    when "not_appear"
-      @pokemons = @pokemons.where(appear_on_sword: false)
-    else
-      # do not concern
-    end
-    case @pokemon_titles["shield"]
-    when "appear"
-      @pokemons = @pokemons.where(appear_on_shield: true)
-    when "not_appear"
-      @pokemons = @pokemons.where(appear_on_shield: false)
-    else
-      # do not concern
-    end
+    @pokemon_name = params[:pokemon_name]
+    name_criteria = PokemonNameCriteria.new(@pokemon_name)
+
+    @pokemon_types = params[:pokemon_types]
+    types_criteria = PokemonTypesCriteria.new(@pokemon_types)
+
+    @pokemon_titles = params[:pokemon_titles]
+    titles_criteria = PokemonTitlesCriteria.new(@pokemon_titles)
+
+    criteria_list = [name_criteria, types_criteria, titles_criteria]
+    pokemon_criteria = PokemonCriteria.new(criteria_list)
+    @pokemons = PokemonSummaryRepository.list(pokemon_criteria) # 種族絞り込み条件
   end
 end
