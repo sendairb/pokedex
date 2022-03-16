@@ -23,3 +23,5 @@ rails db:seed
 ## サーバ起動
 rails server
 ```
+
+- [ガラル図鑑(ローカル環境)](http://127.0.0.1:3000/regional_pokedexes/galar/pokemons)
