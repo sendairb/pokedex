@@ -38,7 +38,7 @@
                     type="radio"
                     name="pokemon_titles[<%= pokemon_title[:key] %>]"
                     id="pokemon-title-<%= pokemon_title[:key] %>-<%= appear[:value] %>"
-                    value="<%= appear[:value] %>"<%= @pokemon_titles.empty? || @pokemon_titles[pokemon_title[:key]] == appear[:value] ? " checked" : "" %>
+                    value="<%= appear[:value] %>"<%= @pokemon_titles[pokemon_title[:key]] == appear[:value] ? " checked" : "" %>
                   >
                   <label class="form-check-label" for="pokemon-title-<%= pokemon_title[:key] %>-<%= appear[:value] %>"><%= appear[:label] %></label>
                 </div>
