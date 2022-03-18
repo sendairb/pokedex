@@ -26,7 +26,11 @@ class PokemonsController < ApplicationController
   def index
     @pokemon_name = ''
     @pokemon_types = []
-    @pokemon_titles = {}
+    @pokemon_titles = {
+      'sword' => PokemonTitlesCriteria::NOT_CONCERN,
+      'shield' => PokemonTitlesCriteria::NOT_CONCERN
+    }
+
 
     @regional_pokedex = RegionalPokedex.find_by!(name: params[:regional_pokedex_name])
     @pokemons = @regional_pokedex.pokemons
