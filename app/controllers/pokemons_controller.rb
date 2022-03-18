@@ -39,14 +39,16 @@ class PokemonsController < ApplicationController
   def search
     @regional_pokedex = RegionalPokedex.find_by!(name: params[:regional_pokedex_name])
 
-    @pokemon_name = params[:pokemon_name]
+    @pokemon_name = params[:pokemon_name] || ''
     name_criteria = PokemonNameCriteria.new(@pokemon_name)
 
     @pokemon_types = params[:pokemon_types]
     types_criteria = PokemonTypesCriteria.new(@pokemon_types)
 
-    @pokemon_titles = params[:pokemon_titles]
-    puts @pokemon_titles
+    @pokemon_titles = params[:pokemon_titles] || {
+      'sword' => PokemonTitlesCriteria::NOT_CONCERN,
+      'shield' => PokemonTitlesCriteria::NOT_CONCERN
+    }
     titles_criteria = PokemonTitlesCriteria.new(@pokemon_titles)
 
     criteria_list = [name_criteria, types_criteria, titles_criteria]
