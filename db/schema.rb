@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_26_161055) do
-
+ActiveRecord::Schema[7.0].define(version: 2021_07_26_161055) do
   create_table "pokemons", force: :cascade do |t|
     t.string "name", null: false
     t.string "type1", null: false
@@ -20,8 +19,8 @@ ActiveRecord::Schema.define(version: 2021_07_26_161055) do
     t.integer "regional_pokedex_no", null: false
     t.boolean "appear_on_sword", null: false
     t.boolean "appear_on_shield", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "regional_pokedex_id"
     t.index ["regional_pokedex_id"], name: "index_pokemons_on_regional_pokedex_id"
   end
@@ -29,8 +28,8 @@ ActiveRecord::Schema.define(version: 2021_07_26_161055) do
   create_table "regional_pokedexes", force: :cascade do |t|
     t.string "name", null: false
     t.string "display_name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "pokemons", "regional_pokedexes"
