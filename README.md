@@ -14,7 +14,7 @@ cd <REPOSITORY_ROOT>
 ## Ruby依存系インストール
 bundle install
 
-## npm依存系インストーラー
+## npm依存系インストール
 yarn
 
 ## マイグレーション実行
