@@ -11,8 +11,11 @@
 ```console
 cd <REPOSITORY_ROOT>
 
+## Ruby依存系インストール
 bundle install
-npm install --save-dev
+
+## npm依存系インストーラー
+yarn
 
 ## マイグレーション実行
 rails db:migrate
